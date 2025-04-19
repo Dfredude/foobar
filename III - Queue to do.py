@@ -14,28 +14,30 @@ def getXOR(start: int, end: int, nest_level):
         return getXOR(*begin_range, nest_level+"\t") ^ getXOR(*end_range, nest_level+"\t")
 
 """First attempt"""
-# def solution(start, length):
-#     xor = 0
-#     reductor = 0 # We reduce 0 on first row
-#     while length > 0:
-#         end = start+length # Determine end bound
-#         # print("XORing:", end=" ")
-#         xor ^= reduce(lambda a, b: a ^ b, range(start, end))
-#         # for j in range(start, end):
-#         #     # print(j, end=" ")
-#         #     xor ^= j
-#         # print()
-#         start=end+reductor # Redfine start bound
-#         length-=1 # Reduce length
-#         reductor+=1 # Increase reductor
-#     return xor
-
 def solution(start, length):
-    end = start+length # define end
-    row_size = end-start
-    lines = [(start+(length-l)*row_size, start+(length-l)*row_size+l) for l in range(length, 0, -1)]
-    return reduce(lambda x, y: x ^ y, [getXOR(*line, "") for line in lines])
+    xor = 0
+    reductor = 0 # We reduce 0 on first row
+    while length > 0:
+        end = start+length # Determine end bound
+        # print("XORing:", end=" ")
+        xor ^= reduce(lambda a, b: a ^ b, range(start, end))
+        # for j in range(start, end):
+        #     # print(j, end=" ")
+        #     xor ^= j
+        # print()
+        start=end+reductor # Redfine start bound
+        length-=1 # Reduce length
+        reductor+=1 # Increase reductor
+    return xor
+
+# def solution(start, length):
+#     end = start+length # define end
+#     row_size = end-start
+#     lines = [(start+(length-l)*row_size, start+(length-l)*row_size+l) for l in range(length, 0, -1)]
+#     return reduce(lambda x, y: x ^ y, [getXOR(*line, "") for line in lines])
 
 # print("solution(): ", solution(0, 3))
-print("solution(): ", solution(16, 7))
+print("solution(): ", solution(5, 8))
 # print("solution(): ", solution(200000, 25000))
+
+A set of mathematical principles that form the basis for manipulating relational table contents; the eight main functions are SELECT, PROJECT, JOIN, INTERSECT, UNION, DIFFERENCE, PRODUCT, and DIVIDE 
